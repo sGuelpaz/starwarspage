@@ -1,0 +1,19 @@
+.list-group{
+    height: 10vh;
+    overflow-y: scroll;
+}
+
+.list-group::-webkit-scrollbar{
+    -webkit-appearance: none;
+}
+
+.list-group::-webkit-scrollbar:vertical{
+    width: 7px;
+}
+
+.list-group::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 10px;
+}
+
+

@@ -6,13 +6,31 @@ export const usePlanets = () => {
 
     const [dataPlanets, setDataPlanets] = useState([])
 
-    const getAllPlanets = ()=>{
+    const [Counter, setCounter] = useState(1);
+
+    const Preview = () => {
+      if (Counter <= 1) {
+        setCounter(1);
+      } else{
+        setCounter(Counter - 1);
+      }
+    }
+
+    const Next = () => {
+      if (Counter >= 9){
+        setCounter(9)
+      } else {
+        setCounter(Counter + 1);
+      }
+    }
+
+    const getAllPlanets = (numberPage)=>{
         var requestOptions = {
             method: 'GET',
             redirect: 'follow'
           };
           
-          fetch("https://swapi.dev/api/planets/", requestOptions)
+          fetch(`https://swapi.dev/api/planets/?page=${numberPage}`, requestOptions)
             .then(response => response.json())
             .then(result => setDataPlanets(result.results))
             .catch(error => console.log('error', error));
@@ -20,6 +38,9 @@ export const usePlanets = () => {
 
   return {
     getAllPlanets,
-    dataPlanets
+    dataPlanets,
+    Preview,
+    Next,
+    Counter
   };
 }

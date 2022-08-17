@@ -14,7 +14,7 @@ function Cardo({title, image, text }) {
         >
       <Card.Img variant="top" src={image} />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title className="text-center">{title}</Card.Title>
         <Card.Text>
          {text}
         </Card.Text>
