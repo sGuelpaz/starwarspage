@@ -5,33 +5,27 @@ import { useState } from "react";
 export const usePerson = () => {
 
     const [dataPeople, setDataPeople] = useState([]);
-
     const [Counter, setCounter] = useState(1);
     
-    const ba = document.getElementById("back");
-    const bn = document.getElementById("next");
 
     const Preview = () => {
       if (Counter <= 1) {
         setCounter(1);
-        
       } else{
         setCounter(Counter - 1);
-        bn.removeAttribute("disabled");
       }
     }
-    
-    
 
     const Next = () => {
       if (Counter >= 9){
-        setCounter(9)
-        bn.setAttribute("disabled","");
+        setCounter(9);
       } else {
         setCounter(Counter + 1);
-        bn.removeAttribute("disabled")
-        ba.removeAttribute("disabled");
       }
+    }
+
+    const back = ()=>{
+      window.history.go(-1);
     }
 
     const getAllPerson = async(numberPage)=>{
@@ -51,7 +45,8 @@ export const usePerson = () => {
     dataPeople,
     Preview,
     Next,
-    Counter
+    Counter,
+    back
   };
 };
  

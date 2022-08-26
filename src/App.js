@@ -6,7 +6,7 @@ import NavbarCom from './components/navigations/Navbar';
 import { Personajes } from './pages/personajes/Personajes';
 import { Planetas } from './pages/planetas/Planetas';
 import Footer from './components/footer/Footer';
-
+import { DetailCharacter } from './components/details/DetailsCharacters';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="/per" element={<Personajes/>}/>
       <Route path="/plan" element={<Planetas/>}/>
+      <Route path='/details/:linkname/:num' element={<DetailCharacter/>} />
     </Routes>
     <Footer/>
     </BrowserRouter>

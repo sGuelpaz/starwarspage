@@ -17,8 +17,8 @@ export const usePlanets = () => {
     }
 
     const Next = () => {
-      if (Counter >= 9){
-        setCounter(9)
+      if (Counter >= 6){
+        setCounter(6)
       } else {
         setCounter(Counter + 1);
       }

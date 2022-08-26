@@ -10,7 +10,7 @@ function Cardo({title, image, text }) {
           key='dark'
           text='light'
           style={{ width: '18rem' }}
-          className="m-4"
+          className="m-4 shadow"
         >
       <Card.Img variant="top" src={image} />
       <Card.Body>

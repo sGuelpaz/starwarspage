@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { usePlanets } from '../../hooks/usePlanets';
 import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -12,12 +12,24 @@ export const Planetas = () => {
 
 
   const {getAllPlanets,dataPlanets, Counter, Preview, Next} = usePlanets();
+  const [disabledL, setDisabledL] = useState(false);
+  const [disabledR, setDisabledR] = useState(false);
 
   useEffect(()=>{
 
     getAllPlanets(Counter);
 
-    console.log(dataPlanets);
+    if(Counter ===6){
+      setDisabledR(true);
+    } else {
+      setDisabledR(false);
+    }
+
+    if(Counter ===1){
+      setDisabledL(true);
+    } else {
+      setDisabledL(false);
+    }
 
   }, [dataPlanets])
   return (
@@ -28,7 +40,7 @@ export const Planetas = () => {
         
         <Card
         bg='danger'
-        key='dark'
+        // key='dark'
         text='black'
         style={{ width: '17rem' }}
         className="m-3 shadow"
@@ -58,9 +70,9 @@ export const Planetas = () => {
         
       ))}
       <div className='container text-center'>
-        <Button className='mx-2 text-light' variant='dark' onClick={Preview}><ImPrevious2/></Button>
+        <Button className='mx-2 text-light shadow' variant='dark' onClick={Preview} disabled={disabledL}><ImPrevious2/></Button>
         <strong>{Counter}</strong>
-        <Button className='mx-2 text-light' variant='dark' onClick={Next}><ImNext2/></Button>
+        <Button className='mx-2 text-light shadow' variant='dark' onClick={Next} disabled={disabledR}><ImNext2/></Button>
       </div>
       </div>
     </div>

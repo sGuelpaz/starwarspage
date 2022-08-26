@@ -6,7 +6,7 @@ import Img3 from '../../assets/images/Img3.jpg';
 function CarouselDark() {
   return (
       <div className="container">
-    <Carousel>
+    <Carousel className='shadow'>
       <Carousel.Item>
         <img
           className="d-flex w-100 wrap"

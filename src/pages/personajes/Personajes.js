@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePerson } from '../../hooks/usePerson';
 import { Card, ListGroupItem } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,18 +7,34 @@ import { ListGroup } from 'react-bootstrap';
 import './estilosPersonajes.css';
 import { ImNext2 } from "react-icons/im";
 import { ImPrevious2 } from "react-icons/im";
+import {Link} from 'react-router-dom';
+import { FaAlignRight } from 'react-icons/fa';
 
 
 export const Personajes = () => {
 
-  const {getAllPerson,dataPeople, Counter, Preview, Next, Disponible} = usePerson();
+  const {getAllPerson,dataPeople, Counter, Preview, Next} = usePerson();
+  const [disabledL, setDisabledL] = useState(false);
+  const [disabledR, setDisabledR] = useState(false);
+
 
   useEffect(()=>{
 
     getAllPerson(Counter);
 
-    console.log(dataPeople);
+    if(Counter ===9){
+      setDisabledR(true);
+    } else {
+      setDisabledR(false);
+    }
 
+    if(Counter ===1){
+      setDisabledL(true);
+    } else {
+      setDisabledL(false);
+    }
+  
+    
   }, [dataPeople])
   return (
     <div>
@@ -28,7 +44,7 @@ export const Personajes = () => {
         
             <Card
             bg='warning'
-            key='dark'
+            key={chars.name}
             text='black'
             style={{ width: '17rem' }}
             className="m-3 shadow"
@@ -51,14 +67,18 @@ export const Personajes = () => {
                 
                 
                
-                <div className='text-center mt-3'><Button className="m-auto" variant="dark">Ir</Button></div>
+                <div className='text-center mt-3'>
+                  <Link to={`/details/${chars.name}/${Counter}`} key ={chars.name}>
+                  <Button className="m-auto" variant="dark"><FaAlignRight/>  Detalles</Button>
+                  </Link>
+                  </div>
             </Card.Body>
         </Card>
       ))}
       <div className='container text-center'>
-        <Button id="back" className='mx-2 text-light' variant='dark' onClick={Preview} disabled><ImPrevious2/></Button>
+        <Button id="back" className='mx-2 text-light shadow' disabled={disabledL} variant='dark' onClick={Preview}><ImPrevious2/></Button>
         <strong>{Counter}</strong>
-        <Button id="next"className='mx-2 text-light' variant='dark' onClick={Next}><ImNext2/></Button>
+        <Button id="next" className='mx-2 text-light shadow' disabled={disabledR}  variant='dark' onClick={Next}><ImNext2/></Button>
       </div>
       </div>
     </div>
