@@ -6,7 +6,8 @@ import { ListGroup } from 'react-bootstrap';
 import ImgPlan from '../../assets/images/ImgPlanetas.jpg'
 import { ImNext2 } from "react-icons/im";
 import { ImPrevious2 } from "react-icons/im";
-
+import {Link} from 'react-router-dom';
+import { FaAlignRight } from 'react-icons/fa';
 
 export const Planetas = () => {
 
@@ -40,7 +41,7 @@ export const Planetas = () => {
         
         <Card
         bg='danger'
-        // key='dark'
+        key= {planets.name}
         text='black'
         style={{ width: '17rem' }}
         className="m-3 shadow"
@@ -63,11 +64,13 @@ export const Planetas = () => {
             
             
            
-            <div className='text-center mt-3'><Button className="m-auto" variant="dark">Ir</Button></div>
+            <div className='text-center mt-3'>
+              <Link to={`/detailsP/${planets.name}/${Counter}`} key={planets.name}>
+              <Button className="m-auto" variant="dark"><FaAlignRight/> Detalles</Button>
+              </Link>
+              </div>
         </Card.Body>
     </Card>
-        
-        
       ))}
       <div className='container text-center'>
         <Button className='mx-2 text-light shadow' variant='dark' onClick={Preview} disabled={disabledL}><ImPrevious2/></Button>

@@ -24,6 +24,10 @@ export const usePlanets = () => {
       }
     }
 
+    const back = ()=>{
+      window.history.go(-1);
+    }
+
     const getAllPlanets = (numberPage)=>{
         var requestOptions = {
             method: 'GET',
@@ -41,6 +45,7 @@ export const usePlanets = () => {
     dataPlanets,
     Preview,
     Next,
-    Counter
+    Counter,
+    back
   };
 }
