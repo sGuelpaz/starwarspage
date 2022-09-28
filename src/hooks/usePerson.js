@@ -4,9 +4,9 @@ import { useState } from "react";
 
 export const usePerson = () => {
 
+  
     const [dataPeople, setDataPeople] = useState([]);
     const [Counter, setCounter] = useState(1);
-    
 
     const Preview = () => {
       if (Counter <= 1) {
@@ -36,10 +36,13 @@ export const usePerson = () => {
           
           fetch(`https://swapi.dev/api/people/?page=${numberPage}`, requestOptions)
             .then(response => response.json())
-            .then(result => setDataPeople(result.results))
+            .then((result) => {
+              setDataPeople(result.results);
+            })
             .catch(error => console.log('error', error));
     }
 
+    
   return {
     getAllPerson,
     dataPeople,
